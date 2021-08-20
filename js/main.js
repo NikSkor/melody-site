@@ -4,6 +4,11 @@ $(document).ready(function () {
     var counterDown = $(".counter-down");
     var floorPath = $(".home-img path"); //отдельный этаж
 
+    var modal =$(".modal");
+    var modalCloseButton = $(".modal-close-button");
+    var viewFlatsButton = $(".view-flats");
+
+
     //наведение мышки на этаж
     floorPath.on("mouseover", function(){
         currentFloor = $(this).attr("data-floor");
@@ -11,6 +16,11 @@ $(document).ready(function () {
         $(".counter").text(currentFloor);
     });
 
+    floorPath.on("click", toggleModal);
+
+    modalCloseButton.on("click", toggleModal);
+
+    viewFlatsButton.on("click", toggleModal);
 
     //клик по счётчику вверх
     counterUp.on("click", function() {
@@ -33,4 +43,9 @@ $(document).ready(function () {
             $(`[data-floor=${usCurrentFloor}]`).toggleClass("current-floor");
         }
     })
+
+    function toggleModal() {
+        modal.toggleClass("is-open");
+        floorPath.removeClass("current-floor");
+      }
 });
